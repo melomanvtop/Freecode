@@ -1,91 +1,136 @@
-
 <!DOCTYPE html>
-<html lang="ru">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>FREE CODE</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: radial-gradient(circle at center, #1e0033, #000);
-            color: white;
-        }
-        .header {
-            padding: 20px;
-            text-align: center;
-            font-size: 24px;
-            font-weight: bold;
-            border-bottom: 1px solid #333;
-        }
-        .search-box {
-            padding: 20px;
-            text-align: center;
-        }
-        .search-box input {
-            width: 80%;
-            padding: 10px;
-            font-size: 16px;
-            border-radius: 10px;
-            border: none;
-        }
-        .categories {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            padding: 10px;
-        }
-        .category {
-            width: 120px;
-            margin: 10px;
-            text-align: center;
-            background: #222;
-            border-radius: 12px;
-            padding: 10px;
-            box-shadow: 0 0 10px #111;
-        }
-        .category img {
-            width: 40px;
-            height: 40px;
-        }
-        .category-name {
-            margin-top: 10px;
-            font-weight: bold;
-        }
-        .category-count {
-            font-size: 14px;
-            color: #aaa;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <title>Mini Shop</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      background-color: #000000;
+      color: #ffffff;
+      position: relative;
+      min-height: 100vh;
+    }
+    .product-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-top: -10px;
+    }
+    .product {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      width: 90px;
+      padding: 16px;
+      border-radius: 12px;
+      backdrop-filter: blur(16px);
+      background-color: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+      transition: background-color 0.3s, transform 0.2s;
+    }
+    .product:hover {
+      box-shadow: 0 0 12px 4px #00ff99;
+      background-color: rgba(255, 255, 255, 0.03);
+      transform: translateY(-2px);
+    }
+    .product img {
+      width: 28px;
+      height: 28px;
+      border: none;
+      border-radius: 4px;
+      padding: 1px;
+      background-color: transparent;
+    }
+    .product span {
+      margin-top: 6px;
+      font-size: 16px;
+      font-weight: 700;
+      text-align: center;
+      color: #00ff99;
+    }
+    .toggle-theme {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      background-color: #00ff99;
+      color: #000;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 1000;
+    }
+    .banner {
+      width: 100%;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .banner img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 12px;
+    }
+  </style>
 </head>
 <body>
+  <button class="toggle-theme" onclick="toggleTheme()">Сменить тему</button>
 
-    <div class="header">FREE CODE</div>
+  <div class="banner">
+    <img src="https://files.oaiusercontent.com/file-NPGfk1xDFQyS3ATvjKyAZW?se=2025-06-18T22%3A34%3A42Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D299%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3D%25D0%25A2%25D0%25B5%25D0%25BA%25D1%2581%25D1%2582%2520%25D0%25B0%25D0%25B1%25D0%25B7%25D0%25B0%25D1%2586%25D0%25B0-3.png&sig=ErRu4kUKSKHN%2B0%2BL1eS%2B6o8iEYhSrCM0aLeCwz5XJ2Q%3D" alt="Banner" />
+  </div>
 
-    <div class="search-box">
-        <input type="text" placeholder="Поиск товаров">
+  <div class="product-list">
+    <div class="product" onclick="sendProduct('App Store')">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Apple_logo_black.svg" alt="App Store" />
+      <span>App Store</span>
     </div>
-
-    <div class="categories">
-        <div class="category"><img src="https://img.icons8.com/color/48/fortnite.png"/><div class="category-name">Fortnite</div><div class="category-count">87 товаров</div></div>
-        <div class="category"><img src="https://img.icons8.com/color/48/roblox.png"/><div class="category-name">Roblox</div><div class="category-count">72 товара</div></div>
-        <div class="category"><img src="https://img.icons8.com/color/48/clash-royale.png"/><div class="category-name">Clash Royale</div><div class="category-count">9 товаров</div></div>
-        <div class="category"><img src="https://img.icons8.com/color/48/brawl-stars.png"/><div class="category-name">Brawl Stars</div><div class="category-count">10 товаров</div></div>
-        <div class="category"><img src="https://img.icons8.com/color/48/steam.png"/><div class="category-name">Steam</div><div class="category-count">6 товаров</div></div>
-        <div class="category"><img src="https://img.icons8.com/fluency/48/marvel.png"/><div class="category-name">Marvel Rivals</div><div class="category-count">6 товаров</div></div>
-        <div class="category"><img src="https://img.icons8.com/ios-filled/50/4a90e2/genshin-impact.png"/><div class="category-name">Genshin Impact</div><div class="category-count">9 товаров</div></div>
-        <div class="category"><img src="https://img.icons8.com/ios-filled/50/4a90e2/minecraft-logo.png"/><div class="category-name">Minecraft</div><div class="category-count">4 товара</div></div>
-        <div class="category"><img src="https://img.icons8.com/ios-glyphs/48/FA5252/valorant.png"/><div class="category-name">Valorant</div><div class="category-count">17 товаров</div></div>
-        <div class="category"><img src="https://img.icons8.com/external-flatart-icons-outline-flatarticons/64/external-vpn-gaming-flatart-icons-outline-flatarticons.png"/><div class="category-name">EXITLAG</div><div class="category-count">2 товара</div></div>
-        <div class="category"><img src="https://img.icons8.com/color/48/twitch--v1.png"/><div class="category-name">Twitch</div><div class="category-count">4 товара</div></div>
-        <div class="category"><img src="https://img.icons8.com/color/48/overwatch.png"/><div class="category-name">Overwatch</div><div class="category-count">18 товаров</div></div>
-        <div class="category"><img src="https://img.icons8.com/external-tal-revivo-color-tal-revivo/96/external-zenless-zone-zero-an-upcoming-action-role-playing-game-by-hoyoverse-color-tal-revivo.png"/><div class="category-name">Zenless Zone Zero</div><div class="category-count">7 товаров</div></div>
-        <div class="category"><img src="https://img.icons8.com/ios-glyphs/60/stand-off.png"/><div class="category-name">Standoff 2</div><div class="category-count">4 товара</div></div>
-        <div class="category"><img src="https://img.icons8.com/color/48/xbox.png"/><div class="category-name">Xbox/Microsoft</div><div class="category-count">7 товаров</div></div>
-        <div class="category"><img src="https://img.icons8.com/color/48/spotify--v1.png"/><div class="category-name">Spotify</div><div class="category-count">4 товара</div></div>
-        <div class="category"><img src="https://img.icons8.com/fluency/48/mac-os.png"/><div class="category-name">App Store</div><div class="category-count">5 товаров</div></div>
-        <div class="category"><img src="https://img.icons8.com/color/48/apex-legends.png"/><div class="category-name">Apex Legends</div><div class="category-count">11 товаров</div></div>
+    <div class="product" onclick="sendProduct('Fortnite')">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/Fortnite_F_letter_logo.svg" alt="Fortnite" />
+      <span>Fortnite</span>
     </div>
+    <div class="product" onclick="sendProduct('Netflix')">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix" />
+      <span>Netflix</span>
+    </div>
+    <div class="product" onclick="sendProduct('Spotify')">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg" alt="Spotify" />
+      <span>Spotify</span>
+    </div>
+    <div class="product" onclick="sendProduct('Epic Games')">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/31/Epic_Games_logo.svg" alt="Epic Games" />
+      <span>Epic Games</span>
+    </div>
+    <div class="product" onclick="sendProduct('Steam')">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg" alt="Steam" />
+      <span>Steam</span>
+    </div>
+  </div>
 
+  <script>
+    function sendProduct(name) {
+      Telegram.WebApp.sendData(name);
+      Telegram.WebApp.close();
+    }
+
+    function toggleTheme() {
+      const body = document.body;
+      const currentBg = getComputedStyle(body).backgroundColor;
+      if (currentBg === 'rgb(0, 0, 0)' || currentBg === '#000000') {
+        body.style.backgroundColor = '#ffffff';
+        body.style.color = '#000000';
+      } else {
+        body.style.backgroundColor = '#000000';
+        body.style.color = '#ffffff';
+      }
+    }
+  </script>
 </body>
 </html>
