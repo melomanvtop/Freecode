@@ -39,10 +39,16 @@
             width: 120px;
             margin: 10px;
             text-align: center;
-            background: #222;
+            background: linear-gradient(180deg, #272727, #1c1c1c);
             border-radius: 12px;
             padding: 10px;
             box-shadow: 0 0 10px #111;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
+        }
+        .category:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 18px rgba(120, 78, 255, 0.45);
         }
         .category img {
             width: 40px;
@@ -85,6 +91,10 @@
         <div class="category"><img src="https://img.icons8.com/color/48/spotify--v1.png"/><div class="category-name">Spotify</div><div class="category-count">4 товара</div></div>
         <div class="category"><img src="https://img.icons8.com/fluency/48/mac-os.png"/><div class="category-name">App Store</div><div class="category-count">5 товаров</div></div>
         <div class="category"><img src="https://img.icons8.com/color/48/apex-legends.png"/><div class="category-name">Apex Legends</div><div class="category-count">11 товаров</div></div>
+    </div>
+
+    <div class="search-box" style="padding-top: 10px; color: #9f9f9f; font-size: 14px;">
+        Новинка: появилась подсветка карточек при наведении ✨
     </div>
 
 </body>
